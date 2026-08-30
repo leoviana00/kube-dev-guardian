@@ -1,4 +1,3 @@
-```powershell
 #requires -Version 5.1
 
 $ErrorActionPreference = "Stop"
@@ -229,4 +228,4 @@ else {
 Write-Host ""
 Write-Host "Helm instalado com sucesso!" -ForegroundColor Green
 Write-Host ""
-```
+
