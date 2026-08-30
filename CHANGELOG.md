@@ -2,8 +2,13 @@
 
 ## Current - Work in progress
 ### Merges
-
+*  Merge pull request #7 from leoviana00/FEATURE00-CONFIG-CHANGELOG [View](https://github.com/leoviana00/kube-dev-guardian/commits/b3a1e9a8cfd417f2b31e0391e5d5e88cd1bd4886)
 ### Commits
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/9bb3b54c1162ba00e9eb903208c267ff40f82f0f)
+*  chore: configure local kubernetes environment [View](https://github.com/leoviana00/kube-dev-guardian/commits/b694865d4c786716505ddbe47126769260a74269)
+*  chore: configure local kubernetes environment [View](https://github.com/leoviana00/kube-dev-guardian/commits/e504edc420f27e22780da4ce71f689b44663dfa2)
+*  feat(f01): add local kubernetes namespaces [View](https://github.com/leoviana00/kube-dev-guardian/commits/fd8847aed519f6fa998306839da4436946686e25)
+*  feat(f01): establish local kubernetes lab [View](https://github.com/leoviana00/kube-dev-guardian/commits/af74affaa7ecb129f4df888ea931b479f324e2b8)
 
 
 
