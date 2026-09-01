@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-small
+  namespace: team-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-small
+  template:
+    metadata:
+      labels:
+        app: api-small
+    spec:
+      containers:
+        - name: api
+          image: nginx:1.27-alpine
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-heavy
+  namespace: team-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-heavy
+  template:
+    metadata:
+      labels:
+        app: api-heavy
+    spec:
+      containers:
+        - name: api
+          image: nginx:1.27-alpine
+          resources:
+            requests:
+              cpu: 500m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
