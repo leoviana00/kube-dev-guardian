@@ -1,0 +1,79 @@
+# ============================================================
+# KUBE DEV GUARDIAN - KAFKA LAB
+# ============================================================
+
+networks:
+  guardian-net:
+    driver: bridge
+
+services:
+
+  # ============================================================
+  # ZOOKEEPER
+  # ============================================================
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.2
+    container_name: guardian-zookeeper
+
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+    ports:
+      - "2181:2181"
+
+    networks:
+      - guardian-net
+
+  # ============================================================
+  # KAFKA
+  # ============================================================
+  kafka:
+    image: confluentinc/cp-kafka:7.3.2
+    container_name: guardian-kafka
+    restart: unless-stopped
+
+    depends_on:
+      - zookeeper
+
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://localhost:29092
+
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+
+    networks:
+      - guardian-net
+
+  # ============================================================
+  # KAFKA UI
+  # ============================================================
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: guardian-kafka-ui
+
+    depends_on:
+      - kafka
+
+    ports:
+      - "8088:8080"
+
+    environment:
+      KAFKA_CLUSTERS_0_NAME: guardian-kafka
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+    networks:
+      - guardian-net
