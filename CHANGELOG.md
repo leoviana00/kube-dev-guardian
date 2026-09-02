@@ -2,8 +2,18 @@
 
 ## Current - Work in progress
 ### Merges
-
+*  Merge pull request #11 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/127a4730c493c9825d7cd9b6b2b93cd7fbe60e5f)
 ### Commits
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/98a766aeb843a3e907294b1b5a96f53e3990700b)
+*  feat(f02): ResourceQuota por namespace [View](https://github.com/leoviana00/kube-dev-guardian/commits/a689f9490150920ab4d69d72691f35d95ddf80d4)
+*  feat(f02):Requests e Limits [View](https://github.com/leoviana00/kube-dev-guardian/commits/fa80c2fb59269640cb5f8390911c1d2d42ef9128)
+*  feat(f02): RBAC [View](https://github.com/leoviana00/kube-dev-guardian/commits/527ecffa3120c8363567132c2a77be7a925eb8f3)
+*  feat(f02): Simular esgotamento [View](https://github.com/leoviana00/kube-dev-guardian/commits/543b719d3cd279fc673967152bd5f2aac1e6fefb)
+*  docs: Ajustando roadmap [View](https://github.com/leoviana00/kube-dev-guardian/commits/1def1a232489130a4a9ff9c6ace032ec963bc234)
+*  feat(customer-api): application base [View](https://github.com/leoviana00/kube-dev-guardian/commits/9d532ee39d0b5e9141bf4fd0a4589810505c7eda)
+*  feat(order-consumer): application base [View](https://github.com/leoviana00/kube-dev-guardian/commits/f09a8a67f7dc6f81aa8f5153ccaac8474ba05663)
+*  feat(order-producer): application base [View](https://github.com/leoviana00/kube-dev-guardian/commits/d2775534d982671a9ccd9fe6c6323e2fbbd55d47)
+*  feat(f02): config maven and setup apps [View](https://github.com/leoviana00/kube-dev-guardian/commits/fdf95fbd11ebc249d79bacbba0ab65afd42b1d7e)
 
 
 
