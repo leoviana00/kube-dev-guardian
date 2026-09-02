@@ -2,6 +2,8 @@
 
 ## Current - Work in progress
 ### Merges
+*  Merge pull request #18 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/9a18246ae4d994699d003a28bd95f560cb41dff7)
+*  Merge pull request #17 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/7963c1f76fd499ef12c861b8a0ddfc1e0ddeb79c)
 *  Merge pull request #16 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/609d1e3d97e9c8102cfc65dc385cff5e26b2e8ef)
 *  Merge branch 'main' of github.com:leoviana00/kube-dev-guardian [View](https://github.com/leoviana00/kube-dev-guardian/commits/e827466a2abca09f5ea0799dcabc4498ea61449f)
 *  Merge pull request #15 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/bec3d6c13d528843d1a84ee140a9aa17d6478794)
@@ -27,6 +29,7 @@
 *  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/4974291dd638f17cda37b992237533c882439f6d)
 *  feat(f02): Dockerfiles e imagens [View](https://github.com/leoviana00/kube-dev-guardian/commits/a033bc2881470f7e64e28e58202740cdf9bef008)
 *  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/a5f47998fbfa92b6100e7f696043191652d612e8)
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/a489e59ecc1d2d6b991c7dbc30c3ae992a1c67a4)
 *  feat(f02): Dockerfile e imagens [View](https://github.com/leoviana00/kube-dev-guardian/commits/205198bd4bf1cfc17229b932d2170cc3ae2f0bfb)
 
 
