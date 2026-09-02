@@ -2,6 +2,15 @@
 
 ## Current - Work in progress
 ### Merges
+
+### Commits
+
+
+
+## 2.0.0 - (2026-08-30)
+### Merges
+*  Merge pull request #20 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/f556f03d4ca40b72df31f8f4d90d96e4245ff861)
+*  Merge pull request #19 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/c8846f5d5b5740a676ef20deb1f8e49d5bcc7a88)
 *  Merge pull request #18 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/9a18246ae4d994699d003a28bd95f560cb41dff7)
 *  Merge pull request #17 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/7963c1f76fd499ef12c861b8a0ddfc1e0ddeb79c)
 *  Merge pull request #16 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/609d1e3d97e9c8102cfc65dc385cff5e26b2e8ef)
@@ -30,7 +39,9 @@
 *  feat(f02): Dockerfiles e imagens [View](https://github.com/leoviana00/kube-dev-guardian/commits/a033bc2881470f7e64e28e58202740cdf9bef008)
 *  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/a5f47998fbfa92b6100e7f696043191652d612e8)
 *  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/a489e59ecc1d2d6b991c7dbc30c3ae992a1c67a4)
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/e58b2472e686ed69dd72629efe2c284f9eb1908a)
 *  feat(f02): Dockerfile e imagens [View](https://github.com/leoviana00/kube-dev-guardian/commits/205198bd4bf1cfc17229b932d2170cc3ae2f0bfb)
+*  docs(f02): finalizacao da feature 02 [View](https://github.com/leoviana00/kube-dev-guardian/commits/86917906cc9a1c214675d0266c45777d1fb12feb)
 
 
 
@@ -65,8 +76,9 @@
 *  docs: configuracao de repositorio para issues templates e changelog [View](https://github.com/leoviana00/kube-dev-guardian/commits/15154109ecadc21cca395d4bf3ca8280588224be)
 ## 📝 Metadata
 ```
-This version -------- 1.0.0
+This version -------- 2.0.0
+1.0.0
 0.0.0
-Previous version ---- 0.0.0
-Total commits ------- 10
+Previous version ---- 1.0.0
+Total commits ------- 42
 ```
