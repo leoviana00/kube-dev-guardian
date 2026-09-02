@@ -2,6 +2,8 @@
 
 ## Current - Work in progress
 ### Merges
+*  Merge pull request #15 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/bec3d6c13d528843d1a84ee140a9aa17d6478794)
+*  Merge pull request #14 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/5c81555ae8e42392f0dfe592ced24d00be6e7f8e)
 *  Merge pull request #13 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/3ee9a641b27b36a7d400f55f189213419596f862)
 *  Merge pull request #12 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/98e752aafb253feb96fb7f57ce55f4f81f6451d1)
 *  Merge pull request #11 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/127a4730c493c9825d7cd9b6b2b93cd7fbe60e5f)
@@ -18,6 +20,8 @@
 *  feat(order-producer): application base [View](https://github.com/leoviana00/kube-dev-guardian/commits/d2775534d982671a9ccd9fe6c6323e2fbbd55d47)
 *  feat(f02): config maven and setup apps [View](https://github.com/leoviana00/kube-dev-guardian/commits/fdf95fbd11ebc249d79bacbba0ab65afd42b1d7e)
 *  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/476029e28eba3407f855653f6857526e18c1c06b)
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/f0edb6db3695f08ec4211ce293233b950d6c63b4)
+*  feat(f02): Documentação da API - OpenAPI [View](https://github.com/leoviana00/kube-dev-guardian/commits/32701d3982d63ef97d7a81621fe62996d70fbe10)
 
 
 
