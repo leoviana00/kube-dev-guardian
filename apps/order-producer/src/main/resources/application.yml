@@ -1,3 +1,6 @@
 spring:
   application:
     name: order-producer
+
+  kafka:
+    bootstrap-servers: localhost:29092
