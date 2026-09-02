@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-no-resources
+  namespace: team-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-no-resources
+  template:
+    metadata:
+      labels:
+        app: nginx-no-resources
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
