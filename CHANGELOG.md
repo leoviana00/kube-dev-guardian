@@ -2,7 +2,10 @@
 
 ## Current - Work in progress
 ### Merges
+*  Merge pull request #13 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/3ee9a641b27b36a7d400f55f189213419596f862)
+*  Merge pull request #12 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/98e752aafb253feb96fb7f57ce55f4f81f6451d1)
 *  Merge pull request #11 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/127a4730c493c9825d7cd9b6b2b93cd7fbe60e5f)
+*  Merge pull request #10 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/93904e0375a1380f8fd5e71691c4b7d7edf7ad9c)
 ### Commits
 *  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/98a766aeb843a3e907294b1b5a96f53e3990700b)
 *  feat(f02): ResourceQuota por namespace [View](https://github.com/leoviana00/kube-dev-guardian/commits/a689f9490150920ab4d69d72691f35d95ddf80d4)
@@ -14,6 +17,7 @@
 *  feat(order-consumer): application base [View](https://github.com/leoviana00/kube-dev-guardian/commits/f09a8a67f7dc6f81aa8f5153ccaac8474ba05663)
 *  feat(order-producer): application base [View](https://github.com/leoviana00/kube-dev-guardian/commits/d2775534d982671a9ccd9fe6c6323e2fbbd55d47)
 *  feat(f02): config maven and setup apps [View](https://github.com/leoviana00/kube-dev-guardian/commits/fdf95fbd11ebc249d79bacbba0ab65afd42b1d7e)
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/476029e28eba3407f855653f6857526e18c1c06b)
 
 
 
