@@ -2,6 +2,7 @@
 
 ## Current - Work in progress
 ### Merges
+*  Merge branch 'main' of github.com:leoviana00/kube-dev-guardian [View](https://github.com/leoviana00/kube-dev-guardian/commits/e827466a2abca09f5ea0799dcabc4498ea61449f)
 *  Merge pull request #15 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/bec3d6c13d528843d1a84ee140a9aa17d6478794)
 *  Merge pull request #14 from leoviana00/FEATURE02-APPLICATION-WORKLOADS [View](https://github.com/leoviana00/kube-dev-guardian/commits/5c81555ae8e42392f0dfe592ced24d00be6e7f8e)
 *  Merge pull request #13 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/3ee9a641b27b36a7d400f55f189213419596f862)
@@ -22,6 +23,8 @@
 *  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/476029e28eba3407f855653f6857526e18c1c06b)
 *  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/f0edb6db3695f08ec4211ce293233b950d6c63b4)
 *  feat(f02): Documentação da API - OpenAPI [View](https://github.com/leoviana00/kube-dev-guardian/commits/32701d3982d63ef97d7a81621fe62996d70fbe10)
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/4974291dd638f17cda37b992237533c882439f6d)
+*  feat(f02): Dockerfiles e imagens [View](https://github.com/leoviana00/kube-dev-guardian/commits/a033bc2881470f7e64e28e58202740cdf9bef008)
 
 
 
