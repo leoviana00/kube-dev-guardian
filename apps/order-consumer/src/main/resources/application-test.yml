@@ -1,0 +1,5 @@
+spring:
+  kafka:
+    consumer:
+      group-id: order-consumer-test
+      auto-offset-reset: earliest
