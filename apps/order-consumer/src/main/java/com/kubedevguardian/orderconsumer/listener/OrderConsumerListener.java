@@ -7,14 +7,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderConsumerListener {
 
+    private OrderCreated lastReceivedOrder;
+
     @KafkaListener(
             topics = "orders",
             groupId = "order-consumer"
     )
     public void consume(OrderCreated order) {
 
+        this.lastReceivedOrder = order;
+
         System.out.println(
                 "Order received: " + order
         );
+    }
+
+    public OrderCreated getLastReceivedOrder() {
+        return lastReceivedOrder;
     }
 }
