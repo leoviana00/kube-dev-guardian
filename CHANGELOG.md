@@ -7,6 +7,21 @@
 
 
 
+## 3.0.0 - (2026-09-02)
+### Merges
+*  Merge pull request #23 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/03c00424a2d750ea272518482371ee1db6f2c0e5)
+*  Merge pull request #22 from leoviana00/FEATURE03-KAFKA-MESSAGING-LAB [View](https://github.com/leoviana00/kube-dev-guardian/commits/70d716cff72abf7b3b6b7bdad32f8374ec0c77b5)
+### Commits
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/a680c9ccfac11e8d309d2afc5a307939d8ad724c)
+*  feat(f03): kafka docker setup [View](https://github.com/leoviana00/kube-dev-guardian/commits/0a34aca873c2f566304a1cf6e3f5754cab751e83)
+*  feat(f03): Configurar order-producer [View](https://github.com/leoviana00/kube-dev-guardian/commits/9a0861edac3ca7cbc4c9ae49fa0b030c4a68614a)
+*  feat(f03): Configurar order-producer e Publicar evento de pedido [View](https://github.com/leoviana00/kube-dev-guardian/commits/402a72040876a3b510457c5b84ec1a677801f3a3)
+*  feat(f03): Configurar order-consumer [View](https://github.com/leoviana00/kube-dev-guardian/commits/728b37a99f29a19a73687e171b3301608a79f03d)
+*  feat(f03): criacao dos testes [View](https://github.com/leoviana00/kube-dev-guardian/commits/57017cfb90053e8febfd4f4c2cf6791e437f55ee)
+*  docs(f03): Finalizacao da feature kafka messaging lab [View](https://github.com/leoviana00/kube-dev-guardian/commits/f9a86a58775b28090020703fbff79777a33cb32a)
+
+
+
 ## 2.0.0 - (2026-08-30)
 ### Merges
 *  Merge pull request #20 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/f556f03d4ca40b72df31f8f4d90d96e4245ff861)
@@ -76,9 +91,10 @@
 *  docs: configuracao de repositorio para issues templates e changelog [View](https://github.com/leoviana00/kube-dev-guardian/commits/15154109ecadc21cca395d4bf3ca8280588224be)
 ## 📝 Metadata
 ```
-This version -------- 2.0.0
+This version -------- 3.0.0
+2.0.0
 1.0.0
 0.0.0
-Previous version ---- 1.0.0
-Total commits ------- 42
+Previous version ---- 2.0.0
+Total commits ------- 51
 ```
