@@ -13,6 +13,9 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -65,6 +68,48 @@ class OrderProducerServiceTest {
         assertEquals(
                 Instant.parse("2026-09-03T12:40:00Z"),
                 publishedOrder.createdAt()
+        );
+    }
+
+    @Test
+    void shouldGenerateCreatedAtWhenOrderDoesNotHaveTimestamp() {
+
+        OrderCreated order = new OrderCreated(
+                5001L,
+                15L,
+                new BigDecimal("599.90"),
+                null
+        );
+
+        Instant beforePublish = Instant.now();
+
+        orderProducerService.publish(order);
+
+        Instant afterPublish = Instant.now();
+
+        ArgumentCaptor<OrderCreated> orderCaptor =
+                ArgumentCaptor.forClass(OrderCreated.class);
+
+        verify(kafkaTemplate).send(
+                eq("orders"),
+                eq("5001"),
+                orderCaptor.capture()
+        );
+
+        OrderCreated publishedOrder = orderCaptor.getValue();
+
+        assertEquals(5001L, publishedOrder.orderId());
+        assertEquals(15L, publishedOrder.customerId());
+        assertEquals(
+                new BigDecimal("599.90"),
+                publishedOrder.total()
+        );
+
+        assertNotNull(publishedOrder.createdAt());
+
+        assertTrue(
+                !publishedOrder.createdAt().isBefore(beforePublish)
+                        && !publishedOrder.createdAt().isAfter(afterPublish)
         );
     }
 }

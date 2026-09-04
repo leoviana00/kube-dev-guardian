@@ -19,7 +19,22 @@ public class OrderProducerService {
     }
 
     public void publish(OrderCreated order) {
-        kafkaTemplate.send(TOPIC, order.orderId().toString(), order);
+        OrderCreated event = order;
+
+        if (order.createdAt() == null) {
+            event = new OrderCreated(
+                    order.orderId(),
+                    order.customerId(),
+                    order.total(),
+                    Instant.now()
+            );
+        }
+
+        kafkaTemplate.send(
+                TOPIC,
+                event.orderId().toString(),
+                event
+        );
     }
 
     public void publishExampleOrder() {
