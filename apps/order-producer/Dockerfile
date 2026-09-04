@@ -21,6 +21,12 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
+# Create non-root user
+RUN useradd --system --create-home --uid 10001 appuser
+
 COPY --from=build /app/target/order-producer-0.0.1-SNAPSHOT.jar app.jar
+
+# Run application as non-root
+USER 10001
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

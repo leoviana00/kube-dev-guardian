@@ -21,6 +21,10 @@ FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
+RUN useradd --system --create-home --uid 10001 appuser
+
 COPY --from=build /app/target/order-consumer-0.0.1-SNAPSHOT.jar app.jar
+
+USER 10001
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
