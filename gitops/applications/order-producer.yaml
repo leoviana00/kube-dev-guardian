@@ -1,0 +1,22 @@
+﻿apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: order-producer
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/leoviana00/kube-dev-guardian.git
+    targetRevision: FEATURE05-GITOPS-ARGOCD
+    path: infrastructure/helm/order-producer
+    helm:
+      releaseName: order-producer
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: team-a
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
