@@ -7,6 +7,22 @@
 
 
 
+## 4.0.0 - (2026-09-03)
+### Merges
+*  Merge pull request #25 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/0b9f7ebbefa93e552c6f1a3b914e84d86c0ff09f)
+*  Merge pull request #24 from leoviana00/FEATURE04-HELM-PACKAGING [View](https://github.com/leoviana00/kube-dev-guardian/commits/d8e1e126c2265172192299d6cb19ed575104e9f4)
+### Commits
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/9945709f602d6e089caf0f20cbf0e0dee6742935)
+*  feat(f04): Preparar estrutura Helm [View](https://github.com/leoviana00/kube-dev-guardian/commits/f81f79c0e5c8f3685afa0cd2cb414451ebd7c8e1)
+*  feat(f04): Configurar order-producer [View](https://github.com/leoviana00/kube-dev-guardian/commits/a48a8604075179025f01071cee79e2fd98aecb0c)
+*  feat(f04): Configurar order-producer [View](https://github.com/leoviana00/kube-dev-guardian/commits/d78cf404800804c9907dff762e23192030e86b6f)
+*  feat)f04): config order consumer [View](https://github.com/leoviana00/kube-dev-guardian/commits/0dfb84204b927b25d3f9c43742e1603bab272e63)
+*  feat(f04): kafka acessível pelo Kubernete [View](https://github.com/leoviana00/kube-dev-guardian/commits/d2a3dc447b480260a1a35c9b4958bc3bc9939d1e)
+*  feat(f04): createdAt no evento [View](https://github.com/leoviana00/kube-dev-guardian/commits/bffeb0d8e85e3ab2225e68324d11585111301ac2)
+*  docs(f04): changelog - finalizacao helm packaging [View](https://github.com/leoviana00/kube-dev-guardian/commits/a8dbd1d4cfbe11714359d7c9f0e29f8569c92058)
+
+
+
 ## 3.0.0 - (2026-09-02)
 ### Merges
 *  Merge pull request #23 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/03c00424a2d750ea272518482371ee1db6f2c0e5)
@@ -91,10 +107,11 @@
 *  docs: configuracao de repositorio para issues templates e changelog [View](https://github.com/leoviana00/kube-dev-guardian/commits/15154109ecadc21cca395d4bf3ca8280588224be)
 ## 📝 Metadata
 ```
-This version -------- 3.0.0
+This version -------- 4.0.0
+3.0.0
 2.0.0
 1.0.0
 0.0.0
-Previous version ---- 2.0.0
-Total commits ------- 51
+Previous version ---- 3.0.0
+Total commits ------- 61
 ```
