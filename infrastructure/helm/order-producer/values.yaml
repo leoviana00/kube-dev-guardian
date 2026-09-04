@@ -1,5 +1,8 @@
 replicaCount: 1
 
+strategy:
+  type: Recreate
+
 image:
   repository: kube-dev-guardian/order-producer
   pullPolicy: IfNotPresent
@@ -71,9 +74,13 @@ readinessProbe:
 autoscaling:
   enabled: false
 
-volumes: []
+volumes:
+  - name: tmp
+    emptyDir: {}
 
-volumeMounts: []
+volumeMounts:
+  - name: tmp
+    mountPath: /tmp
 
 nodeSelector: {}
 
