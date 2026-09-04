@@ -7,6 +7,19 @@
 
 
 
+## 5.0.0 - (2026-09-04)
+### Merges
+*  Merge pull request #27 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/08a3925fd4956f73fe28d05289f5a9291b45c513)
+*  Merge pull request #26 from leoviana00/FEATURE05-GITOPS-ARGOCD [View](https://github.com/leoviana00/kube-dev-guardian/commits/cc1f85119724fcaf0a36122a24ebf72212136d35)
+### Commits
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/d74111bcbba440cc307723603d81538098afd517)
+*  feat(05): estrutura inicial GitOps com Argo CD [View](https://github.com/leoviana00/kube-dev-guardian/commits/5d7062d1b28865ae0f93b6b462a456d4e2711eb7)
+*  feat(05): validar reconciliacao GitOps do producer [View](https://github.com/leoviana00/kube-dev-guardian/commits/0f668d9b0df6b7b1d005cb31f8543f4e2888b0fd)
+*  fix(05): restaurar replica do producer [View](https://github.com/leoviana00/kube-dev-guardian/commits/6320ae12a705de2761ba8468b13d2eff834cb628)
+*  docs(f05): Finalizacao da Feature 05 - GitOps com ArgoCD [View](https://github.com/leoviana00/kube-dev-guardian/commits/cf9264648b185cf018a4aa6981321a898b1daed3)
+
+
+
 ## 4.0.0 - (2026-09-03)
 ### Merges
 *  Merge pull request #25 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/0b9f7ebbefa93e552c6f1a3b914e84d86c0ff09f)
@@ -107,11 +120,11 @@
 *  docs: configuracao de repositorio para issues templates e changelog [View](https://github.com/leoviana00/kube-dev-guardian/commits/15154109ecadc21cca395d4bf3ca8280588224be)
 ## 📝 Metadata
 ```
-This version -------- 4.0.0
+This version -------- 5.0.0
+4.0.0
 3.0.0
 2.0.0
 1.0.0
-0.0.0
-Previous version ---- 3.0.0
-Total commits ------- 61
+Previous version ---- 4.0.0
+Total commits ------- 58
 ```
