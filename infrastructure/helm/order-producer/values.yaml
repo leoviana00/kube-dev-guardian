@@ -1,93 +1,323 @@
+# ============================================================
+# REPLICAS
+# ============================================================
+
+# Número desejado de réplicas da aplicação.
 replicaCount: 1
 
+
+# ============================================================
+# DEPLOYMENT STRATEGY
+# ============================================================
+
+# Estratégia utilizada durante atualizações do Deployment.
+#
+# Recreate:
+# Remove os Pods existentes antes de criar os novos.
+#
+# RollingUpdate:
+# Realiza atualização gradual dos Pods.
 strategy:
   type: Recreate
 
+
+# ============================================================
+# CONTAINER IMAGE
+# ============================================================
+
 image:
+
+  # Repositório da imagem da aplicação.
   repository: kube-dev-guardian/order-producer
+
+  # Política de pull da imagem.
   pullPolicy: IfNotPresent
+
+  # Versão da imagem utilizada pelo Deployment.
   tag: "0.0.1"
 
+
+# ============================================================
+# APACHE KAFKA
+# ============================================================
+
 kafka:
+
+  # Endereço do Kafka acessível pelo cluster Kubernetes.
   bootstrapServers: "172.23.0.1:39092"
 
+
+# ============================================================
+# IMAGE PULL SECRETS
+# ============================================================
+
+# Secrets utilizados para autenticação em registries privados.
 imagePullSecrets: []
 
+
+# ============================================================
+# HELM NAME OVERRIDES
+# ============================================================
+
+# Permite sobrescrever o nome padrão do Chart.
 nameOverride: ""
+
+# Permite sobrescrever o nome completo dos recursos.
 fullnameOverride: ""
 
+
+# ============================================================
+# SERVICE ACCOUNT
+# ============================================================
+
 serviceAccount:
+
+  # Define se uma ServiceAccount será criada pelo Helm.
   create: true
+
+  # A aplicação não necessita do token da ServiceAccount.
   automount: false
+
+  # Annotations adicionais para a ServiceAccount.
   annotations: {}
+
+  # Nome customizado.
+  #
+  # Quando vazio, o Helm utiliza o nome padrão calculado.
   name: ""
 
+
+# ============================================================
+# POD METADATA
+# ============================================================
+
+# Annotations adicionais aplicadas aos Pods.
 podAnnotations: {}
 
+# Labels adicionais aplicadas aos Pods.
 podLabels:
+
+  # Identifica o papel da aplicação dentro da arquitetura.
   app.kubernetes.io/component: producer
 
+
+# ============================================================
+# POD SECURITY CONTEXT
+# ============================================================
+
 podSecurityContext:
+
+  # Impede a execução do container como usuário root.
   runAsNonRoot: true
+
+  # Utiliza o perfil padrão de segurança do runtime.
   seccompProfile:
     type: RuntimeDefault
 
+
+# ============================================================
+# CONTAINER SECURITY CONTEXT
+# ============================================================
+
 securityContext:
+
+  # Impede escalonamento de privilégios dentro do container.
   allowPrivilegeEscalation: false
+
+  # Remove todas as capabilities Linux não necessárias.
   capabilities:
     drop:
       - ALL
+
+  # Torna o filesystem principal do container somente leitura.
   readOnlyRootFilesystem: true
 
+
+# ============================================================
+# SERVICE
+# ============================================================
+
 service:
+
+  # Tipo de Service Kubernetes.
   type: ClusterIP
+
+  # Porta exposta internamente pelo Service.
+  #
+  # Esta porta também é utilizada pelo containerPort
+  # no Deployment atual.
   port: 8081
 
+
+# ============================================================
+# KUBERNETES HEALTH PROBES
+# ============================================================
+
+# ------------------------------------------------------------
+# LIVENESS PROBE
+#
+# Verifica se a aplicação continua em execução.
+#
+# Caso falhe repetidamente, o Kubernetes reinicia o container.
+# ------------------------------------------------------------
+
+livenessProbe:
+
+  httpGet:
+
+    # Endpoint específico de liveness do Spring Boot Actuator.
+    path: /actuator/health/liveness
+
+    # Nome da porta declarada no container.
+    port: http
+
+  initialDelaySeconds: 30
+
+  periodSeconds: 10
+
+  timeoutSeconds: 3
+
+  failureThreshold: 3
+
+
+# ------------------------------------------------------------
+# READINESS PROBE
+#
+# Verifica se a aplicação está pronta para receber tráfego.
+#
+# Caso falhe, o Pod deixa de receber tráfego do Service.
+# ------------------------------------------------------------
+
+readinessProbe:
+
+  httpGet:
+
+    # Endpoint específico de readiness do Spring Boot Actuator.
+    path: /actuator/health/readiness
+
+    # Nome da porta declarada no container.
+    port: http
+
+  initialDelaySeconds: 20
+
+  periodSeconds: 10
+
+  timeoutSeconds: 3
+
+  failureThreshold: 3
+
+
+# ============================================================
+# PROMETHEUS OBSERVABILITY
+# ============================================================
+
+serviceMonitor:
+
+  # Define se o recurso ServiceMonitor será criado.
+  #
+  # O Prometheus Operator utilizará este recurso para descobrir
+  # automaticamente o endpoint de métricas da aplicação.
+  enabled: true
+
+  # Endpoint Prometheus exposto pelo Spring Boot Actuator.
+  path: /actuator/prometheus
+
+  # Frequência de coleta das métricas.
+  interval: 30s
+
+  # Tempo máximo permitido para cada coleta.
+  scrapeTimeout: 10s
+
+
+# ============================================================
+# INGRESS
+# ============================================================
+
+# Mantido desabilitado.
+#
+# A aplicação não precisa estar exposta externamente neste
+# momento.
 ingress:
   enabled: false
 
+
+# ============================================================
+# HTTP ROUTE
+# ============================================================
+
+# Mantido desabilitado.
+#
+# Pode ser utilizado futuramente caso a arquitetura utilize
+# Kubernetes Gateway API.
 httpRoute:
   enabled: false
 
+
+# ============================================================
+# CONTAINER RESOURCES
+# ============================================================
+
 resources:
+
+  # Recursos mínimos reservados para o container.
   requests:
     cpu: 100m
     memory: 256Mi
+
+  # Limites máximos permitidos para o container.
   limits:
     cpu: 500m
     memory: 512Mi
 
-livenessProbe:
-  httpGet:
-    path: /actuator/health
-    port: http
-  initialDelaySeconds: 30
-  periodSeconds: 10
-  timeoutSeconds: 3
-  failureThreshold: 3
 
-readinessProbe:
-  httpGet:
-    path: /actuator/health
-    port: http
-  initialDelaySeconds: 20
-  periodSeconds: 10
-  timeoutSeconds: 3
-  failureThreshold: 3
+# ============================================================
+# HORIZONTAL POD AUTOSCALER
+# ============================================================
 
+# Mantido desabilitado inicialmente.
+#
+# Pode ser habilitado futuramente com métricas de CPU, memória
+# ou métricas customizadas do Prometheus.
 autoscaling:
   enabled: false
 
+
+# ============================================================
+# VOLUMES
+# ============================================================
+
+# Como o filesystem principal do container é somente leitura,
+# disponibilizamos um diretório temporário gravável.
 volumes:
+
   - name: tmp
+
     emptyDir: {}
 
+
+# ============================================================
+# VOLUME MOUNTS
+# ============================================================
+
 volumeMounts:
+
   - name: tmp
+
+    # Diretório temporário utilizado pela JVM e pela aplicação.
     mountPath: /tmp
 
+
+# ============================================================
+# SCHEDULING
+# ============================================================
+
+# Node selector opcional.
 nodeSelector: {}
 
+
+# Tolerations opcionais.
 tolerations: []
 
+
+# Regras de afinidade opcionais.
 affinity: {}

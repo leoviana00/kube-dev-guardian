@@ -1,19 +1,169 @@
+# ================================================================
+# SPRING BOOT APPLICATION
+# ================================================================
+
 spring:
+
   application:
-    name: order-producer
+
+    # Nome da aplicação obtido automaticamente do Maven POM.
+    #
+    # Maven property:
+    # <artifactId>order-producer</artifactId>
+    #
+    # O valor será substituído durante o build.
+    name: "@project.artifactId@"
+
+
+  # ==============================================================
+  # APACHE KAFKA
+  # ==============================================================
 
   kafka:
-    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
+
+    # Endereço do cluster Kafka.
+    #
+    # Em Kubernetes, a variável KAFKA_BOOTSTRAP_SERVERS pode ser
+    # configurada via ConfigMap, Secret ou Helm values.
+    #
+    # Caso não seja informada, utiliza localhost:9092.
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+
+
+    producer:
+
+      # Serializador utilizado para as chaves das mensagens Kafka.
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+      # Serializador utilizado para o conteúdo das mensagens Kafka.
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+
+# ================================================================
+# SERVER
+# ================================================================
 
 server:
-  port: 8081
+
+  # Porta HTTP da aplicação.
+  #
+  # Pode ser sobrescrita através da variável SERVER_PORT.
+  #
+  # Valor padrão: 8080
+  port: ${SERVER_PORT:8080}
+
+
+# ================================================================
+# SPRING BOOT ACTUATOR
+# OBSERVABILITY / HEALTH / METRICS
+# ================================================================
 
 management:
+
+
+  # ==============================================================
+  # ACTUATOR ENDPOINTS
+  # ==============================================================
+
   endpoints:
+
     web:
+
       exposure:
-        include: health,info,prometheus
-        
+
+        # Endpoints expostos via HTTP.
+        #
+        # health     -> Status da aplicação
+        # info       -> Informações da aplicação e do build
+        # prometheus -> Métricas no formato Prometheus
+        include:
+          - health
+          - info
+          - prometheus
+
+
+  # ==============================================================
+  # HEALTH ENDPOINT
+  # ==============================================================
+
   endpoint:
+
     health:
-      show-details: never
+
+      probes:
+
+        # Habilita Kubernetes Probes através do Spring Boot Actuator.
+        #
+        # Endpoints disponibilizados:
+        #
+        # /actuator/health/liveness
+        # /actuator/health/readiness
+        enabled: true
+
+
+  health:
+
+    # ============================================================
+    # LIVENESS STATE
+    # ============================================================
+
+    livenessstate:
+
+      # Indica se a aplicação está viva e apta a continuar rodando.
+      enabled: true
+
+
+    # ============================================================
+    # READINESS STATE
+    # ============================================================
+
+    readinessstate:
+
+      # Indica se a aplicação está pronta para receber tráfego.
+      enabled: true
+
+
+  # ==============================================================
+  # MICROMETER METRICS
+  # ==============================================================
+
+  metrics:
+
+    tags:
+
+      # Adiciona automaticamente o nome da aplicação em todas
+      # as métricas exportadas pelo Micrometer.
+      #
+      # Exemplo:
+      #
+      # application="order-producer"
+      application: ${spring.application.name}
+
+
+  # ==============================================================
+  # APPLICATION INFORMATION
+  # ==============================================================
+
+  info:
+
+    app:
+
+      # Nome da aplicação obtido do Maven POM.
+      #
+      # Maven property:
+      # <name>order-producer</name>
+      name: "@project.name@"
+
+
+      # Descrição da aplicação obtida do Maven POM.
+      #
+      # Maven property:
+      # <description>...</description>
+      description: "@project.description@"
+
+
+      # Versão da aplicação obtida do Maven POM.
+      #
+      # Maven property:
+      # <version>0.0.1-SNAPSHOT</version>
+      version: "@project.version@"

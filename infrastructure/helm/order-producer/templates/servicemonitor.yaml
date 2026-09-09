@@ -1,0 +1,104 @@
+# ============================================================
+# PROMETHEUS SERVICE MONITOR
+#
+# Permite que o Prometheus Operator descubra automaticamente
+# o Service do order-producer e faça scrape das métricas
+# expostas pelo Spring Boot Actuator.
+# ============================================================
+
+{{- if .Values.serviceMonitor.enabled }}
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+
+metadata:
+
+  # ==========================================================
+  # SERVICE MONITOR NAME
+  # ==========================================================
+
+  name: {{ include "order-producer.fullname" . }}
+
+  labels:
+
+    # ========================================================
+    # HELM / APPLICATION LABELS
+    # ========================================================
+
+    {{- include "order-producer.labels" . | nindent 4 }}
+
+    # ========================================================
+    # PROMETHEUS DISCOVERY LABEL
+    #
+    # Esta label permite identificar que o ServiceMonitor
+    # pertence ao Prometheus instalado pelo Helm release
+    # "observability-stack".
+    #
+    # Ajuste caso seu Prometheus esteja configurado com outro
+    # serviceMonitorSelector.
+    # ========================================================
+
+    release: observability-stack
+
+
+spec:
+
+  # ==========================================================
+  # SERVICE SELECTOR
+  #
+  # O Prometheus Operator utilizará este selector para localizar
+  # o Kubernetes Service correspondente à aplicação.
+  #
+  # Os labels devem existir no metadata.labels do Service.
+  # ==========================================================
+
+  selector:
+
+    matchLabels:
+
+      {{- include "order-producer.selectorLabels" . | nindent 6 }}
+
+
+  # ==========================================================
+  # METRICS ENDPOINT
+  #
+  # Define como o Prometheus acessará as métricas da aplicação.
+  # ==========================================================
+
+  endpoints:
+
+    - # ======================================================
+      # SERVICE PORT
+      #
+      # Deve corresponder ao nome da porta definida no
+      # templates/service.yaml.
+      # ======================================================
+
+      port: http
+
+
+      # ======================================================
+      # SPRING BOOT ACTUATOR PROMETHEUS ENDPOINT
+      # ======================================================
+
+      path: {{ .Values.serviceMonitor.path | quote }}
+
+
+      # ======================================================
+      # SCRAPE INTERVAL
+      #
+      # Frequência de coleta das métricas.
+      # ======================================================
+
+      interval: {{ .Values.serviceMonitor.interval | quote }}
+
+
+      # ======================================================
+      # SCRAPE TIMEOUT
+      #
+      # Tempo máximo permitido para uma coleta.
+      # ======================================================
+
+      scrapeTimeout: {{ .Values.serviceMonitor.scrapeTimeout | quote }}
+
+{{- end }}
