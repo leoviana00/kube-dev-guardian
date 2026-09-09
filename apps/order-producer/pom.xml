@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="
+             http://maven.apache.org/POM/4.0.0
+             https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
+
+    <!-- ============================================================ -->
+    <!-- SPRING BOOT                                                  -->
+    <!-- ============================================================ -->
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -13,68 +20,194 @@
         <relativePath/>
     </parent>
 
+
+    <!-- ============================================================ -->
+    <!-- APPLICATION METADATA                                         -->
+    <!-- ============================================================ -->
+
     <groupId>com.kubedevguardian</groupId>
+
     <artifactId>order-producer</artifactId>
+
     <version>0.0.1-SNAPSHOT</version>
 
     <name>order-producer</name>
+
     <description>Order Producer - Kube Dev Guardian PoC</description>
 
+
+    <!-- ============================================================ -->
+    <!-- PROPERTIES                                                   -->
+    <!-- ============================================================ -->
+
     <properties>
+
         <java.version>21</java.version>
+
+        <!-- Application metadata -->
+
+        <application.name>${project.artifactId}</application.name>
+
+        <application.description>${project.description}</application.description>
+
+        <application.version>${project.version}</application.version>
+
     </properties>
+
+
+    <!-- ============================================================ -->
+    <!-- DEPENDENCIES                                                 -->
+    <!-- ============================================================ -->
 
     <dependencies>
 
-        <!-- Spring Boot Core -->
+
+        <!-- ======================================================== -->
+        <!-- SPRING BOOT CORE                                         -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- REST API -->
+
+        <!-- ======================================================== -->
+        <!-- REST API                                                 -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Actuator / Health Checks / Metrics -->
+
+        <!-- ======================================================== -->
+        <!-- ACTUATOR                                                 -->
+        <!-- Health Checks / Metrics / Observability                  -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Spring Kafka -->
+
+        <!-- ======================================================== -->
+        <!-- PROMETHEUS                                               -->
+        <!-- Exposes /actuator/prometheus                             -->
+        <!-- ======================================================== -->
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
+
+        <!-- ======================================================== -->
+        <!-- APACHE KAFKA                                             -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
-        <!-- Testes -->
+
+        <!-- ======================================================== -->
+        <!-- TESTS                                                    -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
-        <!-- Testes Kafka -->
+
+        <!-- ======================================================== -->
+        <!-- KAFKA TESTS                                              -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
         </dependency>
 
+
     </dependencies>
 
+
+    <!-- ============================================================ -->
+    <!-- BUILD                                                        -->
+    <!-- ============================================================ -->
+
     <build>
+
+
+        <!-- ======================================================== -->
+        <!-- RESOURCE FILTERING                                       -->
+        <!-- Substitui @project.*@ e @application.*@                  -->
+        <!-- ======================================================== -->
+
+        <resources>
+
+            <resource>
+
+                <directory>src/main/resources</directory>
+
+                <filtering>true</filtering>
+
+            </resource>
+
+        </resources>
+
+
+        <!-- ======================================================== -->
+        <!-- PLUGINS                                                  -->
+        <!-- ======================================================== -->
+
         <plugins>
 
+
+            <!-- ==================================================== -->
+            <!-- SPRING BOOT                                          -->
+            <!-- ==================================================== -->
+
             <plugin>
+
                 <groupId>org.springframework.boot</groupId>
+
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
+
+                <!-- ================================================ -->
+                <!-- BUILD INFORMATION                                -->
+                <!-- Generates META-INF/build-info.properties         -->
+                <!-- Automatically exposed by /actuator/info          -->
+                <!-- ================================================ -->
+
+                <executions>
+
+                    <execution>
+
+                        <goals>
+                            <goal>build-info</goal>
+                        </goals>
+
+                    </execution>
+
+                </executions>
+
+
             </plugin>
 
+
         </plugins>
+
+
     </build>
+
 
 </project>
