@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
-         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="
+             http://maven.apache.org/POM/4.0.0
+             https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
+
+
+    <!-- ============================================================ -->
+    <!-- SPRING BOOT                                                  -->
+    <!-- ============================================================ -->
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -13,68 +20,226 @@
         <relativePath/>
     </parent>
 
+
+    <!-- ============================================================ -->
+    <!-- APPLICATION METADATA                                         -->
+    <!-- ============================================================ -->
+
     <groupId>com.kubedevguardian</groupId>
+
     <artifactId>order-producer</artifactId>
+
     <version>0.0.1-SNAPSHOT</version>
 
     <name>order-producer</name>
-    <description>Order Producer - Kube Dev Guardian PoC</description>
+
+    <description>
+        Order Producer - Kube Dev Guardian PoC
+    </description>
+
+
+    <!-- ============================================================ -->
+    <!-- PROPERTIES                                                   -->
+    <!-- ============================================================ -->
 
     <properties>
+
+        <!-- ======================================================== -->
+        <!-- JAVA VERSION                                             -->
+        <!-- ======================================================== -->
+
         <java.version>21</java.version>
+
+
+        <!-- ======================================================== -->
+        <!-- APPLICATION METADATA                                     -->
+        <!--                                                          -->
+        <!-- Propriedades utilizadas pelo resource filtering do       -->
+        <!-- Maven para substituir variáveis no application.yml.      -->
+        <!-- ======================================================== -->
+
+        <application.name>${project.artifactId}</application.name>
+
+        <application.description>${project.description}</application.description>
+
     </properties>
+
+
+    <!-- ============================================================ -->
+    <!-- DEPENDENCIES                                                 -->
+    <!-- ============================================================ -->
 
     <dependencies>
 
-        <!-- Spring Boot Core -->
+
+        <!-- ======================================================== -->
+        <!-- SPRING BOOT CORE                                         -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- REST API -->
+
+        <!-- ======================================================== -->
+        <!-- REST API                                                 -->
+        <!--                                                          -->
+        <!-- Disponibiliza suporte para APIs HTTP utilizando Spring   -->
+        <!-- MVC e Tomcat Embedded.                                   -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Actuator / Health Checks / Metrics -->
+
+        <!-- ======================================================== -->
+        <!-- SPRING BOOT ACTUATOR                                     -->
+        <!--                                                          -->
+        <!-- Disponibiliza endpoints para Health Checks, Info e       -->
+        <!-- métricas da aplicação.                                   -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Spring Kafka -->
+
+        <!-- ======================================================== -->
+        <!-- PROMETHEUS / MICROMETER                                  -->
+        <!--                                                          -->
+        <!-- Registra o Prometheus Meter Registry e disponibiliza     -->
+        <!-- métricas no endpoint:                                    -->
+        <!--                                                          -->
+        <!-- /actuator/prometheus                                     -->
+        <!-- ======================================================== -->
+
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
+
+        <!-- ======================================================== -->
+        <!-- APACHE KAFKA                                             -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
         </dependency>
 
-        <!-- Testes -->
+
+        <!-- ======================================================== -->
+        <!-- TESTS                                                    -->
+        <!--                                                          -->
+        <!-- Dependências principais para testes unitários e          -->
+        <!-- integração com Spring Boot.                              -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+
             <scope>test</scope>
         </dependency>
 
-        <!-- Testes Kafka -->
+
+        <!-- ======================================================== -->
+        <!-- APACHE KAFKA TESTS                                       -->
+        <!--                                                          -->
+        <!-- Suporte para testes de integração envolvendo Kafka.      -->
+        <!-- ======================================================== -->
+
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka-test</artifactId>
+
             <scope>test</scope>
         </dependency>
 
+
     </dependencies>
 
+
+    <!-- ============================================================ -->
+    <!-- BUILD                                                        -->
+    <!-- ============================================================ -->
+
     <build>
+
+
+        <!-- ======================================================== -->
+        <!-- FINAL ARTIFACT NAME                                      -->
+        <!--                                                          -->
+        <!-- Define um nome estável para o JAR gerado pelo Maven.     -->
+        <!--                                                          -->
+        <!-- Exemplo:                                                 -->
+        <!-- target/order-producer.jar                                -->
+        <!--                                                          -->
+        <!-- Evita acoplamento do Dockerfile à versão do projeto.    -->
+        <!-- ======================================================== -->
+
+        <finalName>${project.artifactId}</finalName>
+
+
+        <!-- ======================================================== -->
+        <!-- RESOURCE FILTERING                                       -->
+        <!--                                                          -->
+        <!-- Permite que propriedades Maven sejam substituídas em     -->
+        <!-- arquivos localizados em src/main/resources.              -->
+        <!--                                                          -->
+        <!-- Exemplo no application.yml:                              -->
+        <!--                                                          -->
+        <!-- @project.artifactId@                                     -->
+        <!-- @project.name@                                           -->
+        <!-- @project.description@                                    -->
+        <!-- @project.version@                                        -->
+        <!-- ======================================================== -->
+
+        <resources>
+
+            <resource>
+
+                <directory>src/main/resources</directory>
+
+                <filtering>true</filtering>
+
+            </resource>
+
+        </resources>
+
+
+        <!-- ======================================================== -->
+        <!-- PLUGINS                                                  -->
+        <!-- ======================================================== -->
+
         <plugins>
 
+
+            <!-- ==================================================== -->
+            <!-- SPRING BOOT MAVEN PLUGIN                             -->
+            <!--                                                     -->
+            <!-- Reempacota o JAR como executável, incluindo as       -->
+            <!-- dependências necessárias para execução.              -->
+            <!-- ==================================================== -->
+
             <plugin>
+
                 <groupId>org.springframework.boot</groupId>
+
                 <artifactId>spring-boot-maven-plugin</artifactId>
+
             </plugin>
 
+
         </plugins>
+
+
     </build>
+
 
 </project>
