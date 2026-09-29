@@ -1,29 +1,67 @@
+# ============================================================
+# ORDER PRODUCER - DEPLOYMENT
+# ============================================================
+
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
+
+  # Nome do Deployment gerado pelos helpers do Helm.
   name: {{ include "order-producer.fullname" . }}
+
   labels:
     {{- include "order-producer.labels" . | nindent 4 }}
 
+
 spec:
+
+  # ==========================================================
+  # REPLICAS
+  # ==========================================================
+
   replicas: {{ .Values.replicaCount }}
 
+
+  # ==========================================================
+  # DEPLOYMENT STRATEGY
+  # ==========================================================
+
   strategy:
+
     type: {{ .Values.strategy.type }}
+
     {{- if eq .Values.strategy.type "RollingUpdate" }}
+
     rollingUpdate:
       {{- toYaml .Values.strategy.rollingUpdate | nindent 6 }}
+
     {{- end }}
 
+
+  # ==========================================================
+  # POD SELECTOR
+  # ==========================================================
+
   selector:
+
     matchLabels:
       {{- include "order-producer.selectorLabels" . | nindent 6 }}
 
+
+  # ==========================================================
+  # POD TEMPLATE
+  # ==========================================================
+
   template:
+
     metadata:
+
       {{- with .Values.podAnnotations }}
+
       annotations:
         {{- toYaml . | nindent 8 }}
+
       {{- end }}
 
       labels:
@@ -33,64 +71,213 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
 
+
     spec:
+
+
+      # ======================================================
+      # IMAGE PULL SECRETS
+      # ======================================================
+
       {{- with .Values.imagePullSecrets }}
+
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
+
       {{- end }}
+
+
+      # ======================================================
+      # SERVICE ACCOUNT
+      # ======================================================
 
       serviceAccountName: {{ include "order-producer.serviceAccountName" . }}
 
       automountServiceAccountToken: {{ .Values.serviceAccount.automount }}
 
+
+      # ======================================================
+      # POD SECURITY CONTEXT
+      # ======================================================
+
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
 
+
+      # ======================================================
+      # CONTAINERS
+      # ======================================================
+
       containers:
+
         - name: {{ .Chart.Name }}
+
+
+          # ==================================================
+          # CONTAINER SECURITY CONTEXT
+          # ==================================================
 
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
+
+
+          # ==================================================
+          # CONTAINER IMAGE
+          # ==================================================
 
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
 
           imagePullPolicy: {{ .Values.image.pullPolicy }}
 
+
+          # ==================================================
+          # ENVIRONMENT VARIABLES
+          # ==================================================
+
           env:
+
+
+            # ================================================
+            # APACHE KAFKA
+            #
+            # Configura o endereço dos brokers Kafka utilizados
+            # pela aplicação Spring Boot.
+            #
+            # Mapeado para:
+            #
+            # spring.kafka.bootstrap-servers:
+            #   ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+            # ================================================
+
             - name: KAFKA_BOOTSTRAP_SERVERS
+
               value: {{ .Values.kafka.bootstrapServers | quote }}
 
+
+            # ================================================
+            # SPRING BOOT SERVER PORT
+            #
+            # Define a porta HTTP utilizada pela aplicação.
+            #
+            # Mapeado para:
+            #
+            # server:
+            #   port: ${SERVER_PORT:8080}
+            #
+            # Mantém alinhados:
+            #
+            # Spring Boot
+            #      ↓
+            # Container
+            #      ↓
+            # Kubernetes Service
+            # ================================================
+
+            - name: SERVER_PORT
+
+              value: {{ .Values.service.port | quote }}
+
+
+          # ==================================================
+          # CONTAINER PORT
+          # ==================================================
+
           ports:
+
             - name: http
+
               containerPort: {{ .Values.service.port }}
+
               protocol: TCP
+
+
+          # ==================================================
+          # LIVENESS PROBE
+          #
+          # Verifica se a aplicação continua viva.
+          #
+          # Caso falhe continuamente, o Kubernetes reinicia
+          # o container.
+          # ==================================================
 
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
 
+
+          # ==================================================
+          # READINESS PROBE
+          #
+          # Verifica se a aplicação está pronta para receber
+          # tráfego.
+          #
+          # Caso falhe, o Pod permanece executando, mas deixa
+          # de receber tráfego através do Service.
+          # ==================================================
+
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
+
+
+          # ==================================================
+          # CONTAINER RESOURCES
+          # ==================================================
 
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
 
+
+          # ==================================================
+          # VOLUME MOUNTS
+          #
+          # Necessário principalmente porque o container possui
+          # readOnlyRootFilesystem habilitado.
+          #
+          # O Spring Boot/JVM pode utilizar diretórios temporários.
+          # ==================================================
+
           volumeMounts:
             {{- toYaml .Values.volumeMounts | nindent 12 }}
+
+
+      # ======================================================
+      # VOLUMES
+      # ======================================================
 
       volumes:
         {{- toYaml .Values.volumes | nindent 8 }}
 
+
+      # ======================================================
+      # NODE SELECTOR
+      # ======================================================
+
       {{- with .Values.nodeSelector }}
+
       nodeSelector:
         {{- toYaml . | nindent 8 }}
+
       {{- end }}
+
+
+      # ======================================================
+      # AFFINITY
+      # ======================================================
 
       {{- with .Values.affinity }}
+
       affinity:
         {{- toYaml . | nindent 8 }}
+
       {{- end }}
 
+
+      # ======================================================
+      # TOLERATIONS
+      # ======================================================
+
       {{- with .Values.tolerations }}
+
       tolerations:
         {{- toYaml . | nindent 8 }}
+
       {{- end }}
