@@ -7,6 +7,24 @@
 
 
 
+## 6.0.0 - (2026-09-04)
+### Merges
+*  Merge pull request #31 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/c7e43b223dc6a72023a11036901e6f7fc2a4485b)
+*  Merge pull request #30 from leoviana00/FEATURE06-OBSERVABILITY [View](https://github.com/leoviana00/kube-dev-guardian/commits/9314cbfeb8dbd88d7770363f3f9f99c2123fdb41)
+### Commits
+*  docs(📚 CHANGELOG): update release notes [View](https://github.com/leoviana00/kube-dev-guardian/commits/0208e1941addcce3509cdb5ffb78d7231659d8d4)
+*  feat(06): adicionar stack inicial de observabilidade [View](https://github.com/leoviana00/kube-dev-guardian/commits/3353935e2deeb79a3d603ac1fd29d11fa995f088)
+*  fix(06): habilitar server-side apply na observabilidade [View](https://github.com/leoviana00/kube-dev-guardian/commits/7ba28bab73a9d4d782625593db3a141f84e3835d)
+*  fix(06): desabilitar gerenciamento de CRDs no prometheus stack [View](https://github.com/leoviana00/kube-dev-guardian/commits/1a49a7ed2d86037aa66f95e1f3d733276c60c461)
+*  feat(06): adicionar gerenciamento GitOps dos CRDs de observabilidade [View](https://github.com/leoviana00/kube-dev-guardian/commits/c99b43090f100c0c683c3ee672c91b6aba49f691)
+*  fix(06): alinhar CRDs com Prometheus Operator v0.93.1 [View](https://github.com/leoviana00/kube-dev-guardian/commits/74ac7cee9ef1f52fc434174a9c70ce17f4c2a148)
+*  feat(observability): add Prometheus metrics to order-producer [View](https://github.com/leoviana00/kube-dev-guardian/commits/012331bcd88b3559ec6151993ce75f7fc16bf023)
+*  chore(order-producer): update image to 0.0.2 [View](https://github.com/leoviana00/kube-dev-guardian/commits/bb23a16533f53c9abf9d3354a6e0c0674ff79446)
+*  feat(06): atualizar configuracao de build do order-producer [View](https://github.com/leoviana00/kube-dev-guardian/commits/5c04b1f9efd96b112f00140bbb4b17a52fe46890)
+*  chore(06): release version 6.0.0 [View](https://github.com/leoviana00/kube-dev-guardian/commits/05cfdc40d1d05996fe3b26dae23e415c4e73c753)
+
+
+
 ## 5.0.0 - (2026-09-04)
 ### Merges
 *  Merge pull request #27 from leoviana00/develop [View](https://github.com/leoviana00/kube-dev-guardian/commits/08a3925fd4956f73fe28d05289f5a9291b45c513)
@@ -120,11 +138,11 @@
 *  docs: configuracao de repositorio para issues templates e changelog [View](https://github.com/leoviana00/kube-dev-guardian/commits/15154109ecadc21cca395d4bf3ca8280588224be)
 ## 📝 Metadata
 ```
-This version -------- 5.0.0
+This version -------- 6.0.0
+5.0.0
 4.0.0
 3.0.0
 2.0.0
-1.0.0
-Previous version ---- 4.0.0
-Total commits ------- 58
+Previous version ---- 5.0.0
+Total commits ------- 38
 ```
